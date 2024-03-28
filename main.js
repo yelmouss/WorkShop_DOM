@@ -1,3 +1,5 @@
+//Declaration du tableau des produits
+
 let MesProduits = [
   {
     name: "Adidas",
@@ -31,8 +33,10 @@ let MesProduits = [
   },
 ];
 
+// le GET par selector DOM de Cart
 let CartGeneral = document.getElementById("Cart");
 
+//Itération sur les items du tableau 
 MesProduits.forEach((item) => {
   let divProduct = document.createElement("div");
   divProduct.classList.add("card", 'mt-2');
@@ -99,10 +103,13 @@ MesProduits.forEach((item) => {
     }
   });
   divProduct.appendChild(LikeButton);
-
+  
+  // Ajouter l'article au panier
   CartGeneral.appendChild(divProduct);
 });
 
+
+//function pour calculer le prix total à chaque modification et au chargement 
 function updateTotalPrice() {
   let TotalPrice = MesProduits.reduce(
     (total, currentValue) => total + currentValue.price * currentValue.quantity,
@@ -111,5 +118,5 @@ function updateTotalPrice() {
   let TotalPriceElement = document.getElementById("TotalPrice");
   TotalPriceElement.textContent = "Total Price : $" + TotalPrice;
 }
-
+// Appeler la fonction de mise à jour du prix total initialement
 updateTotalPrice()
